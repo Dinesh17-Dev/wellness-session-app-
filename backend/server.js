@@ -90,7 +90,7 @@ const logger = (req, res, next) => {
 };
 
 
-//User Register API 
+
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -110,7 +110,7 @@ app.post("/register", async (req, res) => {
 });
 
 
-///login API
+
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -133,7 +133,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-//Creating session 
+
 app.post("/my-sessions/save-draft", logger, async (req, res) => {
   const { title, tags, status } = req.body;
 
@@ -159,28 +159,29 @@ app.post("/my-sessions/save-draft", logger, async (req, res) => {
 });
 
 
-//get all sessions 
+
 app.get("/sessions", async (req, res) => {
   const publishedSessions = await SessionModel.find({ status: "published" });
   return res.status(200).json(publishedSessions);
 });
 
-//user Sessions 
+
 app.get("/my-sessions", logger, async (req, res) => {
   const email = req.email;
 
   const user = await UserModel.findOne({ email: email });
-  console.log(user._id)
+  
   if (!user) {
     return res.status(401).json({ error: "User not found" });
   }
 
   const sessions = await SessionModel.find({ user_id: user._id });
+  
   return res.status(200).json(sessions);
 });
 
 
-//user sessions based on ID 
+
 app.get("/my-sessions/:id", logger, async (req, res) => {
   const sessionId = req.params.id;
   const email = req.email;
@@ -266,13 +267,7 @@ app.post("/my-sessions/publish", logger, async (req, res) => {
 });
 
 
-app.get("/:id", logger, async(req,res) => {
-  const {id} = req.params
-  const getUserSessions = await SessionModel.find({user_id:id,status: "published"})
-  return res.status(200).json(getUserSessions);
 
-
-})
 
 
 module.exports = app
