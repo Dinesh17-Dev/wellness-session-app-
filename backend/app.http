@@ -1,0 +1,66 @@
+### Register User
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+  "email": "naruto@mail.com",
+  "password": "supersecret"
+}
+
+###
+
+### Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "email": "gojo@mail.com",
+  "password": "supersecret"
+}
+
+###
+
+### (Copy JWT token from login response, paste below)
+GET http://localhost:5000/my-sessions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvam9AbWFpbC5jb20iLCJpYXQiOjE3NTQyMzI5MTV9.2wo8jTMZonC-Jlxr107KL3E9ZLCIuF7Te1rITmr6sy8
+
+###
+GET http://localhost:5000/sessions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvam9AbWFpbC5jb20iLCJpYXQiOjE3NTQyMzI5MTV9.2wo8jTMZonC-Jlxr107KL3E9ZLCIuF7Te1rITmr6sy8
+
+
+###
+### Save a Session Draft
+POST http://localhost:5000/my-sessions/save-draft
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hcnV0b0BtYWlsLmNvbSIsImlhdCI6MTc1NDIzMjY1OX0.7YEhmh4Pie4H6Tk8tsJU4rahGHMgDUjKmrd_qQrAsnw
+Content-Type: application/json
+
+{
+  "title": "Going to tokyo for shopping with team",
+  "tags": ["Yuzi", "Megumi","Nobara"],
+  "status": "published"
+}
+ 
+
+
+###
+
+### Get single session by ID (replace SESSION_ID below)
+GET http://localhost:5000/my-sessions/SESSION_ID
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyQG1haWwuY29tIiwiaWF0IjoxNzUzOTQ3MDk0fQ.Y05iNWYZReVjcu-97FA75G_bBjywUBnQphDEqKDGBv4
+
+###
+
+### Publish a draft session (pass the session _id)
+POST http://localhost:5000/my-sessions/publish
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyQG1haWwuY29tIiwiaWF0IjoxNzUzOTQ3MDk0fQ.Y05iNWYZReVjcu-97FA75G_bBjywUBnQphDEqKDGBv4
+Content-Type: application/json
+
+{
+  "_id": "688b1bfe2c80103950f41a81"
+}
+
+### 
+GET http://localhost:5000/688b1b9cf8b987683cd55805
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyQG1haWwuY29tIiwiaWF0IjoxNzUzOTQ3MDk0fQ.Y05iNWYZReVjcu-97FA75G_bBjywUBnQphDEqKDGBv4
+
